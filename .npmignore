@@ -5,8 +5,11 @@
 .babelrc
 .eslintrc.yml
 .gitignore
+.lintstagedrc
 .npmignore
+.prettierrc.yml
 .travis.yml
+commitlint.config.js
 
 # Logs
 *.log*

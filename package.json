@@ -33,36 +33,34 @@
     "convict": "^4.0.0",
     "lodash": "^4.17.4",
     "lodash-es": "^4.17.4",
-    "prop-types": "^15.5.10",
-    "react-icons": "^2.2.5",
-    "request": "^2.81.0",
-    "request-promise-native": "^1.0.4"
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
     "@mozaik/babel-preset": "^1.0.0-alpha.6",
-    "@mozaik/ui": "^2.0.0-alpha.11",
+    "@mozaik/ui": "^2.0.0-alpha.21",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
-    "babel-jest": "^20.0.3",
+    "babel-jest": "^23.4.2",
     "coveralls": "^2.11.15",
     "cross-env": "^5.0.1",
-    "enzyme": "^2.9.1",
+    "enzyme": "^3.3.0",
     "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.1.0",
     "husky": "^0.14.3",
-    "jest": "^20.0.4",
-    "lint-staged": "^4.0.2",
+    "jest": "^23.4.2",
+    "lint-staged": "^7.2.0",
     "nock": "^9.0.14",
     "prettier": "^1.5.3",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-test-renderer": "^15.6.1",
-    "styled-components": "^2.1.1",
-    "validate-commit-msg": "^2.14.0"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-test-renderer": "^16.4.0",
+    "styled-components": "^2.1.1"
   },
   "peerDependencies": {
-    "@mozaik/ui": "^2.0.0-alpha.11",
-    "react": "^15.6.1"
+    "@mozaik/ui": "^2.0.0-alpha.21",
+    "react": "^16.4.0"
   },
   "scripts": {
     "lint": "eslint ./src/** ./test/**",
@@ -71,52 +69,18 @@
     "test:cover": "jest --verbose --coverage",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:commonjs:watch": "npm run build:commonjs -- --watch",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:es:watch": "npm run build:es -- --watch",
     "build": "npm run build:commonjs && npm run build:es",
-    "fmt": "prettier --print-width=100 --tab-width=4 --bracket-spacing --no-semi --trailing-comma es5 --single-quote --color --write \"{src,test}/**/*.js\" 'client.js'",
-    "fmt:check": "prettier --print-width=100 --tab-width=4 --bracket-spacing --no-semi --trailing-comma es5 --single-quote --list-different \"{src,test}/**/*.js\" 'client.js'",
+    "fmt": "prettier --color --write \"{src,test}/**/*.js\" 'client.js'",
+    "fmt:check": "prettier --list-different \"{src,test}/**/*.js\" 'client.js'",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "version": "echo ${npm_package_version}",
     "precommit": "lint-staged",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "commitlint -E GIT_PARAMS"
   },
-  "lint-staged": {
-    "*.js": [
-      "lint:fix",
-      "fmt",
-      "git add",
-      "jest --bail --findRelatedTests"
-    ]
-  },
-  "config": {
-    "validate-commit-msg": {
-      "types": [
-        "feat",
-        "fix",
-        "docs",
-        "style",
-        "refactor",
-        "perf",
-        "test",
-        "build",
-        "ci",
-        "chore",
-        "revert"
-      ],
-      "scope": {
-        "required": true,
-        "allowed": [
-          "*"
-        ],
-        "validate": false,
-        "multiple": false
-      },
-      "warnOnFail": false,
-      "maxSubjectLength": 80,
-      "subjectPattern": ".+",
-      "subjectPatternErrorMsg": "subject does not match subject pattern!",
-      "helpMessage": "",
-      "autoFix": false
-    }
+  "jest": {
+    "testURL": "http://localhost/"
   }
 }

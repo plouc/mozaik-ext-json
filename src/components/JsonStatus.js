@@ -2,31 +2,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import UnknownIcon from 'react-icons/lib/md/help-outline'
-import SuccessIcon from 'react-icons/lib/md/done'
-import WarningIcon from 'react-icons/lib/md/warning'
-import ErrorIcon from 'react-icons/lib/md/error'
-import { TrapApiError, Widget, WidgetHeader, WidgetBody } from '@mozaik/ui'
+import { TrapApiError, Widget, WidgetHeader, WidgetBody, WidgetStatusBadge } from '@mozaik/ui'
 import computeRequestId from '../lib/computeRequestId'
-
-const iconSize = '12vmin'
 
 const bodyStyle = {
     padding: '1vmin 2vmin 2vmin',
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-}
-
-const iconWrapperStyle = {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-}
-
-const labelStyle = {
-    textAlign: 'center',
 }
 
 export default class JsonStatus extends Component {
@@ -136,55 +119,7 @@ export default class JsonStatus extends Component {
         }
 
         if (body === undefined) {
-            switch (currentStatus) {
-                case 'success':
-                    body = (
-                        <div style={bodyStyle}>
-                            <div style={iconWrapperStyle}>
-                                <SuccessIcon size={iconSize} color={theme.colors.success} />
-                            </div>
-                            {currentLabel !== undefined && (
-                                <div style={labelStyle}>{currentLabel}</div>
-                            )}
-                        </div>
-                    )
-                    break
-                case 'warning':
-                    body = (
-                        <div style={bodyStyle}>
-                            <div style={iconWrapperStyle}>
-                                <WarningIcon size={iconSize} color={theme.colors.warning} />
-                            </div>
-                            {currentLabel !== undefined && (
-                                <div style={labelStyle}>{currentLabel}</div>
-                            )}
-                        </div>
-                    )
-                    break
-                case 'error':
-                    body = (
-                        <div style={bodyStyle}>
-                            <div style={iconWrapperStyle}>
-                                <ErrorIcon size={iconSize} color={theme.colors.failure} />
-                            </div>
-                            {currentLabel !== undefined && (
-                                <div style={labelStyle}>{currentLabel}</div>
-                            )}
-                        </div>
-                    )
-                    break
-                default:
-                    body = (
-                        <div style={bodyStyle}>
-                            <div style={iconWrapperStyle}>
-                                <UnknownIcon size={iconSize} color={theme.colors.unknown} />
-                            </div>
-                            {currentLabel !== undefined && (
-                                <div style={labelStyle}>{currentLabel}</div>
-                            )}
-                        </div>
-                    )
-            }
+            body = <WidgetStatusBadge status={currentStatus} message={currentLabel} />
         }
 
         return (

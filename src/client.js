@@ -1,6 +1,5 @@
 'use strict'
 
-const request = require('request-promise-native')
 const chalk = require('chalk')
 
 module.exports = mozaik => {
@@ -16,7 +15,7 @@ module.exports = mozaik => {
                 chalk.yellow(`[json] calling ${url} - ${Object.keys(headers).length} header(s)`)
             )
 
-            return request(options)
+            return mozaik.request(options)
         },
     }
 }
