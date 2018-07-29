@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render as expected 1`] = `
+<div
+  className="sc-bdVaJa eydJRb"
+  style={Object {}}
+>
+  <div
+    className="sc-bwzfXH bJUZVN"
+  >
+    <header
+      className="sc-htpNat lcyfRu"
+      style={Object {}}
+    >
+      <span>
+        http://fake.io
+      </span>
+    </header>
+    <div
+      className="sc-bZQynM FCrnA"
+      style={Object {}}
+    >
+      <div
+        className="sc-dnqmqq Bpvft"
+      >
+        <div
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI gExwvp"
+          >
+            A
+          </div>
+        </div>
+        <div
+          className="sc-gqjmRU cABAvw"
+        >
+          <strong>
+            A value
+          </strong>
+        </div>
+      </div>
+      <div
+        className="sc-dnqmqq Bpvft"
+      >
+        <div
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI gExwvp"
+          >
+            B
+          </div>
+        </div>
+        <div
+          className="sc-gqjmRU cABAvw"
+        >
+          <strong>
+            B value
+          </strong>
+        </div>
+      </div>
+      <div
+        className="sc-dnqmqq Bpvft"
+      >
+        <div
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI gExwvp"
+          >
+            C
+          </div>
+        </div>
+        <div
+          className="sc-gqjmRU cABAvw"
+        >
+          <strong>
+            C value
+          </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

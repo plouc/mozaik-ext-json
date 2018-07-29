@@ -1,9 +1,12 @@
-//import React from 'react'
-//import { shallow } from 'enzyme'
-//import renderer from 'react-test-renderer'
-//import { ThemeProvider } from 'styled-components'
-//import { WidgetHeader, WidgetLoader, defaultTheme } from '@mozaik/ui'
+import React from 'react'
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import renderer from 'react-test-renderer'
+import { ThemeProvider } from 'styled-components'
+import { WidgetHeader, WidgetLoader, WidgetListItem, defaultTheme } from '@mozaik/ui'
 import JsonKeys from './../../src/components/JsonKeys'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('getApiRequest', () => {
     it('should return correct api request', () => {
@@ -40,76 +43,80 @@ describe('getApiRequest', () => {
     })
 })
 
-/*
-test('should display loader if no apiData available', () => {
-    const wrapper = shallow(<Branches project={fixtures.project.name} />)
+it('should display loader if no apiData available', () => {
+    const wrapper = Enzyme.shallow(<JsonKeys url="http://fake.io" keys={['A']} />)
 
     expect(wrapper.find(WidgetLoader).exists()).toBeTruthy()
 })
 
-test('header should display 0 count by default', () => {
-    const wrapper = shallow(<Branches project={fixtures.project.name} />)
+describe('title', () => {
+    it('should display url by default', () => {
+        const wrapper = Enzyme.shallow(<JsonKeys url="http://fake.io" keys={['A']} />)
 
-    const header = wrapper.find(WidgetHeader)
-    expect(header.prop('count')).toBe(0)
+        const header = wrapper.find(WidgetHeader)
+        expect(header.prop('title')).toBe('http://fake.io')
+    })
+
+    it('should support override', () => {
+        const wrapper = Enzyme.shallow(
+            <JsonKeys url="http://fake.io" keys={['A']} title="override" />
+        )
+
+        const header = wrapper.find(WidgetHeader)
+        expect(header.prop('title')).toBe('override')
+    })
 })
 
-test('header should display pull request count when api sent data', () => {
-    const wrapper = shallow(
-        <Branches
-            project={fixtures.project.name}
+it('should display configured key values', () => {
+    const wrapper = Enzyme.shallow(
+        <JsonKeys
+            url="http://fake.io"
+            keys={['A', 'B', 'C']}
             apiData={{
-                project: fixtures.project,
-                branches: { items: fixtures.branches, pagination: { total: 42 } },
+                A: 'A value',
+                B: 'B value',
+                C: 'C value',
             }}
         />
     )
 
-    const header = wrapper.find(WidgetHeader)
-    expect(header.exists()).toBeTruthy()
-    expect(header.prop('count')).toBe(42)
+    const items = wrapper.find(WidgetListItem)
+    expect(items).toHaveLength(3)
+    expect(items.at(0).prop('title')).toBe('A')
+    expect(items.at(0).prop('post').props.children).toBe('A value')
+    expect(items.at(1).prop('title')).toBe('B')
+    expect(items.at(1).prop('post').props.children).toBe('B value')
+    expect(items.at(2).prop('title')).toBe('C')
+    expect(items.at(2).prop('post').props.children).toBe('C value')
 })
 
-test(`header title should default to '<project_name> Branches'`, () => {
-    const wrapper = shallow(
-        <Branches
-            project={fixtures.project.name}
+it('should support boolean values', () => {
+    const wrapper = Enzyme.shallow(
+        <JsonKeys
+            url="http://fake.io"
+            keys={['A']}
             apiData={{
-                project: fixtures.project,
-                branches: { items: fixtures.branches, pagination: { total: 42 } },
+                A: true,
             }}
         />
     )
 
-    const header = wrapper.find(WidgetHeader)
-    expect(header.prop('title')).toBe('Branches')
+    const items = wrapper.find(WidgetListItem)
+    expect(items).toHaveLength(1)
+    expect(items.at(0).prop('title')).toBe('A')
+    expect(items.at(0).prop('post').props.children).toBe('true')
 })
 
-test(`header title should be overridden when passing 'title' prop`, () => {
-    const customTitle = 'Custom Title'
-    const wrapper = shallow(
-        <Branches
-            project={fixtures.project.name}
-            apiData={{
-                project: fixtures.project,
-                branches: { items: fixtures.branches, pagination: { total: 42 } },
-            }}
-            title={customTitle}
-        />
-    )
-
-    const header = wrapper.find(WidgetHeader)
-    expect(header.prop('title')).toBe(customTitle)
-})
-
-test('should render as expected', () => {
+it('should render as expected', () => {
     const tree = renderer.create(
         <ThemeProvider theme={defaultTheme}>
-            <Branches
-                project={fixtures.project.name}
+            <JsonKeys
+                url="http://fake.io"
+                keys={['A', 'B', 'C']}
                 apiData={{
-                    project: fixtures.project,
-                    branches: { items: fixtures.branches, pagination: { total: 42 } },
+                    A: 'A value',
+                    B: 'B value',
+                    C: 'C value',
                 }}
             />
         </ThemeProvider>
@@ -117,4 +124,3 @@ test('should render as expected', () => {
 
     expect(tree).toMatchSnapshot()
 })
-*/
