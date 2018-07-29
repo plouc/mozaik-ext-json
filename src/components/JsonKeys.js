@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import {
@@ -34,7 +34,7 @@ export default class JsonKeys extends Component {
         let body = <WidgetLoader />
         if (apiData && !apiError) {
             body = (
-                <div>
+                <Fragment>
                     {keys.map(key => {
                         let value = _.get(apiData, key)
                         if (_.isBoolean(value)) {
@@ -45,14 +45,14 @@ export default class JsonKeys extends Component {
                             <WidgetListItem key={key} title={key} post={<strong>{value}</strong>} />
                         )
                     })}
-                </div>
+                </Fragment>
             )
         }
 
         return (
             <Widget>
                 <WidgetHeader title={title || url} />
-                <WidgetBody>
+                <WidgetBody disablePadding={true}>
                     <TrapApiError error={apiError}>{body}</TrapApiError>
                 </WidgetBody>
             </Widget>

@@ -4,10 +4,6 @@ import _ from 'lodash'
 import { TrapApiError, Widget, WidgetHeader, WidgetBody, WidgetLoader } from '@mozaik/ui'
 import computeRequestId from '../lib/computeRequestId'
 
-const bodyStyle = {
-    padding: '1vmin 2vmin',
-}
-
 const createMarkup = (template, data) => ({
     __html: template(data),
 })
@@ -35,9 +31,7 @@ export default class CustomJson extends Component {
         let body = <WidgetLoader />
         if (apiData && !apiError) {
             const compiled = _.template(template)
-            body = (
-                <div style={bodyStyle} dangerouslySetInnerHTML={createMarkup(compiled, apiData)} />
-            )
+            body = <div dangerouslySetInnerHTML={createMarkup(compiled, apiData)} />
         }
 
         return (
