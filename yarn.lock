@@ -174,9 +174,9 @@
     babel-plugin-transform-object-rest-spread "^6.23.0"
     babel-plugin-transform-react-jsx "^6.24.1"
 
-"@mozaik/ui@^2.0.0-alpha.21":
-  version "2.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/@mozaik/ui/-/ui-2.0.0-alpha.21.tgz#c02317dd5d09feb6bca5019d5dd95f263ce4b8a7"
+"@mozaik/ui@^2.0.0-alpha.25":
+  version "2.0.0-alpha.25"
+  resolved "https://registry.yarnpkg.com/@mozaik/ui/-/ui-2.0.0-alpha.25.tgz#308c8d5e6376f3fe9b412da033b28fd0c5ff858f"
   dependencies:
     immutable "^3.8.1"
     lodash "^4.17.4"

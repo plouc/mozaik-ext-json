@@ -39,7 +39,7 @@
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
     "@mozaik/babel-preset": "^1.0.0-alpha.6",
-    "@mozaik/ui": "^2.0.0-alpha.21",
+    "@mozaik/ui": "^2.0.0-alpha.25",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^23.4.2",
@@ -60,7 +60,7 @@
     "styled-components": "^2.1.1"
   },
   "peerDependencies": {
-    "@mozaik/ui": "^2.0.0-alpha.21",
+    "@mozaik/ui": "^2.0.0-alpha.25",
     "react": "^16.4.0"
   },
   "scripts": {
