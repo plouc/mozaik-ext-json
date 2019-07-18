@@ -29,7 +29,7 @@ export default class JsonKeys extends Component {
     }
 
     render() {
-        const { title, url, keys, apiData, apiError } = this.props
+        const { title, keys, apiData, apiError } = this.props
 
         let body = <WidgetLoader />
         if (apiData && !apiError) {
@@ -49,10 +49,12 @@ export default class JsonKeys extends Component {
             )
         }
 
+        const hasHeader = title && title.length > 0
+
         return (
             <Widget>
-                <WidgetHeader title={title || url} />
-                <WidgetBody disablePadding={true}>
+                {hasHeader && <WidgetHeader title={title} />}
+                <WidgetBody disablePadding={true} isHeaderless={hasHeader}>
                     <TrapApiError error={apiError}>{body}</TrapApiError>
                 </WidgetBody>
             </Widget>
