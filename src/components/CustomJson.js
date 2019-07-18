@@ -26,7 +26,7 @@ export default class CustomJson extends Component {
     }
 
     render() {
-        const { title, url, apiData, apiError, template } = this.props
+        const { title, apiData, apiError, template } = this.props
 
         let body = <WidgetLoader />
         if (apiData && !apiError) {
@@ -34,10 +34,12 @@ export default class CustomJson extends Component {
             body = <div dangerouslySetInnerHTML={createMarkup(compiled, apiData)} />
         }
 
+        const hasHeader = title && title.length > 0
+
         return (
             <Widget>
-                <WidgetHeader title={title || url} />
-                <WidgetBody>
+                {hasHeader && <WidgetHeader title={title} />}
+                <WidgetBody isHeaderless={hasHeader}>
                     <TrapApiError error={apiError}>{body}</TrapApiError>
                 </WidgetBody>
             </Widget>

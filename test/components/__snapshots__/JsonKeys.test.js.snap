@@ -8,14 +8,6 @@ exports[`should render as expected 1`] = `
   <div
     className="sc-bwzfXH bJUZVN"
   >
-    <header
-      className="sc-htpNat lcyfRu"
-      style={Object {}}
-    >
-      <span>
-        http://fake.io
-      </span>
-    </header>
     <div
       className="sc-bZQynM FCrnA"
       style={Object {}}

@@ -44,7 +44,7 @@ export default class JsonStatus extends Component {
     }
 
     render() {
-        const { title, url, statuses, apiData, apiError, theme } = this.props
+        const { title, statuses, apiData, apiError, theme } = this.props
 
         let body
         let currentStatus = 'unknown'
@@ -63,9 +63,10 @@ export default class JsonStatus extends Component {
                                 color: theme.colors.failure,
                             }}
                         >
-                            invalid assertion:<br />
-                            '{status.assert}'<br />
-                            should conform to:<br />
+                            invalid assertion:
+                            <br />'{status.assert}'<br />
+                            should conform to:
+                            <br />
                             {'/^(equals|contains|matches)\\((.+),(.+)\\)$/'}
                         </div>
                     )
@@ -122,10 +123,12 @@ export default class JsonStatus extends Component {
             body = <WidgetStatusBadge status={currentStatus} message={currentLabel} />
         }
 
+        const hasHeader = title && title.length > 0
+
         return (
             <Widget>
-                <WidgetHeader title={title || url} />
-                <WidgetBody>
+                {hasHeader && <WidgetHeader title={title} />}
+                <WidgetBody isHeaderless={hasHeader}>
                     <TrapApiError error={apiError}>{body}</TrapApiError>
                 </WidgetBody>
             </Widget>

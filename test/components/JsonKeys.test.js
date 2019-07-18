@@ -50,11 +50,10 @@ it('should display loader if no apiData available', () => {
 })
 
 describe('title', () => {
-    it('should display url by default', () => {
+    it('should display no header by default', () => {
         const wrapper = Enzyme.shallow(<JsonKeys url="http://fake.io" keys={['A']} />)
 
-        const header = wrapper.find(WidgetHeader)
-        expect(header.prop('title')).toBe('http://fake.io')
+        expect(wrapper.find(WidgetHeader).exists()).toBeFalsy()
     })
 
     it('should support override', () => {
