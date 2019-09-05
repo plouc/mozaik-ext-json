@@ -119,7 +119,13 @@ export default class JsonStatus extends Component {
         }
 
         if (body === undefined) {
-            body = <WidgetStatusBadge status={currentStatus} message={currentLabel} />
+            body = (
+                <WidgetStatusBadge
+                    status={currentStatus}
+                    message={currentLabel}
+                    iconSize={'80px'}
+                />
+            )
         }
 
         return (
